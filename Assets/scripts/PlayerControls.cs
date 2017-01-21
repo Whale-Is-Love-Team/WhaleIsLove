@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour {
 
     [Header("Movement Parameters")]
-    public float speed = 6.0f;
+    public float speed;
     public bool grounded = false;
     public bool movesInX = false;
     public bool movesInY = true;
@@ -84,18 +84,17 @@ public class PlayerControls : MonoBehaviour {
         if(!GameManager.Instance.Running)
             return;
 
-        if (!grounded)
-        {
-            this.moveDirection = new Vector3(0, 0, 0);
-            if (movesInX) this.moveDirection.x = Input.GetAxis("Horizontal");
-            if (movesInY) this.moveDirection.y = Input.GetAxis("Vertical");
-            this.moveDirection.Normalize();
-            this.moveDirection *= this.speed;
-        }
-        else if (this.moveDirection.magnitude > 0.25) this.moveDirection *= inertiaMultiplier;
-        else this.moveDirection = new Vector3(0, 0, 0);
+        //if (!grounded)
+        //{
+        //    if (movesInX) this.moveDirection.x = Input.GetAxis("Horizontal");
+        //    if (movesInY) this.moveDirection.y = Input.GetAxis("Vertical");
+        //    this.moveDirection.Normalize();
+        //    this.moveDirection *= this.speed;
+        //}
+        //else if (this.moveDirection.magnitude > 0.25) this.moveDirection *= inertiaMultiplier;
+        //else this.moveDirection = new Vector3(0, 0, 0);
 
-        this.player.transform.Translate(this.moveDirection * Time.deltaTime);
+        //this.player.transform.Translate(this.moveDirection * Time.deltaTime);
 
 
         float pitch = micSource.pitch;
@@ -145,4 +144,14 @@ public class PlayerControls : MonoBehaviour {
             //nextWaveDisableTime = Time.time + 1;
         }
 	}
+
+    void FixedUpdate()
+    {
+        if (!grounded /*&& !Input.GetKey("joystick 1")*/)
+        {
+            float movex = Input.GetAxis("Horizontal");
+            float movey = Input.GetAxis("Vertical");
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(movex * speed, movey * speed), ForceMode2D.Force);
+        }
+    }
 }
