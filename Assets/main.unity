@@ -201,13 +201,13 @@ Transform:
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114338380233056296, guid: 2296a43ed5c161c42bfff359f44ab855,
     type: 2}
-  m_PrefabInternal: {fileID: 1865791701}
+  m_PrefabInternal: {fileID: 1864210174}
   m_Script: {fileID: 11500000, guid: 6166b5d3cf7d91243b5b95c610dc4eb6, type: 3}
 --- !u!4 &376490174 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4205804724989742, guid: 2296a43ed5c161c42bfff359f44ab855,
     type: 2}
-  m_PrefabInternal: {fileID: 1865791701}
+  m_PrefabInternal: {fileID: 1864210174}
 --- !u!1 &406534413
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +683,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &1865791701
+--- !u!1001 &1864210174
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -722,56 +722,30 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 61271961705006970, guid: 2296a43ed5c161c42bfff359f44ab855,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0.21311808
+      objectReference: {fileID: 0}
+    - target: {fileID: 61271961705006970, guid: 2296a43ed5c161c42bfff359f44ab855,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 2.934411
+      objectReference: {fileID: 0}
+    - target: {fileID: 61271961705006970, guid: 2296a43ed5c161c42bfff359f44ab855,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.010656476
+      objectReference: {fileID: 0}
+    - target: {fileID: 61271961705006970, guid: 2296a43ed5c161c42bfff359f44ab855,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1.552454
+      objectReference: {fileID: 0}
     - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
         type: 2}
-      propertyPath: TriggerModule.enabled
+      propertyPath: VelocityModule.enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: randomSeed
-      value: 1852161326
-      objectReference: {fileID: 0}
-    - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: TriggerModule.collisionShape0
-      value: 
-      objectReference: {fileID: 4116015720388210, guid: a5c70e46e58b9c34fadf0ad68657c5b0,
-        type: 2}
-    - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: CollisionModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: CollisionModule.collidesWithDynamic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: CollisionModule.maxKillSpeed
-      value: 1e+12
-      objectReference: {fileID: 0}
-    - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: CollisionModule.m_Bounce.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: InheritVelocityModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: InheritVelocityModule.m_Curve.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: InheritVelocityModule.m_Mode
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2296a43ed5c161c42bfff359f44ab855, type: 2}

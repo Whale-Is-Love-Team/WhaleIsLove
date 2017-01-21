@@ -36,9 +36,9 @@ public class Projectile : MonoBehaviour {
         _rb2D.velocity = _direction * _projSpeed * Time.fixedDeltaTime;
 	}
 
-    void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.collider.tag == "Player") {
-            var health = collision.collider.gameObject.GetComponent<PlayerHealth>();
+    void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.tag == "Player") {
+            var health = collider.gameObject.GetComponent<PlayerHealth>();
             health.RecieveDamage(_damage);
             GameObject.Destroy(gameObject);
         }
