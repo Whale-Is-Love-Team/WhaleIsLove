@@ -12,13 +12,14 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     public void RecieveDamage(int damages) {
-        if (!GameManager.Instance.Running)
+        var gm = GameManager.Instance;
+        if (!gm.Running)
             return;
 
         life -= damages;
+        gm.ResetCombo();
         if(life <= 0) {
-            Debug.Log("Game Over");
-            GameManager.Instance.Running = false;
+            gm.Running = false;  
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         }
     }

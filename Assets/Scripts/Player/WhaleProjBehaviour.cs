@@ -22,7 +22,10 @@ public class WhaleProjBehaviour : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.tag == "Enemy") {
-            GameObject.Destroy(collider.gameObject);
+            var enemy = collider.gameObject.GetComponent<AbstractEnemy>();
+            if (enemy == null)
+                return;
+            enemy.OnDying();
         }
     }
 

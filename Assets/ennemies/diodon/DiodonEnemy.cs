@@ -74,7 +74,6 @@ public class DiodonEnemy : AbstractEnemy {
 
             _rb2d.velocity = Vector2.zero;
         }
-
     }
 }
     
