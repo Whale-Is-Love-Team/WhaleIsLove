@@ -14,9 +14,8 @@ public class PlayerControls : MonoBehaviour {
     float initialXPositionInUnits = 0;
     [SerializeField]
     private float initialYPositionInUnits = 0;
-
-    public float pitch = 250; //100 - 500;
-    public float loudness = 10;
+    [SerializeField]
+    private float inertiaMultiplier = 0;
 
     public float pitchMin = 100;
     public float pitchMax = 500;
@@ -42,6 +41,7 @@ public class PlayerControls : MonoBehaviour {
     private Vector3 moveDirection = Vector3.zero;
     private float nextWaveTimeMin = 0;
     private float nextWaveDisableTime = 0;
+    private MicroHandler micSource = null;
     
 	// Use this for initialization
 	void Start () {
@@ -52,6 +52,7 @@ public class PlayerControls : MonoBehaviour {
         var sh = this.waveGenerator.shape;
         sh.enabled = true;
         sh.shapeType = ParticleSystemShapeType.SingleSidedEdge;
+        this.micSource = this.GetComponentInChildren<MicroHandler>();
 }
 	
 	// Update is called once per frame
@@ -63,8 +64,19 @@ public class PlayerControls : MonoBehaviour {
             if (movesInY) this.moveDirection.y = Input.GetAxis("Vertical");
             this.moveDirection *= this.speed;
         }
+        else if (this.moveDirection.magnitude > 0.25) this.moveDirection *= inertiaMultiplier;
+        else this.moveDirection = new Vector3(0, 0, 0);
 
         this.player.transform.Translate(this.moveDirection * Time.deltaTime);
+
+        float loudness = micSource.loudness;
+        float pitch = micSource.pitch;
+        if (pitch > pitchMax) pitch = pitchMax;
+        if (pitch < pitchMin) pitch = pitchMin;
+
+        // Debug.Log("loudness " + loudness);
+        // Debug.Log("pitch " + pitch);
+
         if (loudness >= loudnessThreshold && Time.time >= nextWaveTimeMin)
         {
             var emission = this.waveGenerator.emission;
@@ -83,8 +95,8 @@ public class PlayerControls : MonoBehaviour {
             var curve = new AnimationCurve();
             curve.AddKey(0, waveStartingRadius.Evaluate(tmp));
             curve.AddKey(lifeTime, waveRadiusBehavior.Evaluate(tmp));
-            Debug.Log("lifeTime " + lifeTime);
-            Debug.Log("waveRadiusBehavior.Evaluate(tmp) " + waveRadiusBehavior.Evaluate(tmp));
+            // Debug.Log("lifeTime " + lifeTime);
+            // Debug.Log("waveRadiusBehavior.Evaluate(tmp) " + waveRadiusBehavior.Evaluate(tmp));
             sizeOverLifetimeParam.y = new ParticleSystem.MinMaxCurve(1, curve);
             // Width
             sizeOverLifetimeParam.x = waveWidthBehavior.Evaluate(tmp);
