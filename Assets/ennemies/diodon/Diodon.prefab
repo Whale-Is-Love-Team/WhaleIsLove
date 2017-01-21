@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 50650088980756394}
   - component: {fileID: 114417913556289424}
   - component: {fileID: 95511434744922982}
-  m_Layer: 0
+  - component: {fileID: 61933888688224704}
+  m_Layer: 8
   m_Name: Diodon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,6 +64,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &61933888688224704
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713872119825052}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.94, y: 0.94}
 --- !u!95 &95511434744922982
 Animator:
   serializedVersion: 3
@@ -93,13 +108,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 50
   direction: {x: -1, y: 0}
+  contactDamage: 1
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
   projectileSpeed: 75
   projectileNumber: 8
   projectileDistance: 100
-  projectile: {fileID: 1687111799751210, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
+  projectile: {fileID: 1271721251319396, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
   slowFactor: 0.1
 --- !u!212 &212900074123944618
 SpriteRenderer:
@@ -131,7 +147,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: ff58329f2fa6ecc4b9b0c62a25aaf0ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

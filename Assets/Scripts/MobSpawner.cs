@@ -16,6 +16,9 @@ public class MobSpawner : MonoBehaviour {
 
     void Spawn()
     {
+        if (!GameManager.Instance.Running)
+            return;
+
         // Find a random index between zero and one less than the number of spawn points.
         int wave = Random.Range(0, waves.Length);
 

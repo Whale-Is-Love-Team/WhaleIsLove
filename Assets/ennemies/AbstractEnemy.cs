@@ -9,6 +9,8 @@ public abstract class AbstractEnemy : MonoBehaviour {
     protected float moveSpeed;
     [SerializeField]
     protected Vector2 direction;
+    [SerializeField]
+    protected int contactDamage;
 
     protected Rigidbody2D _rb2d;
 
@@ -17,6 +19,17 @@ public abstract class AbstractEnemy : MonoBehaviour {
     }
 
     public void OnCollisionEnter2D(Collision2D collision) {
-        
+        if (!GameManager.Instance.Running)
+            return;
+
+        if(collision.collider.tag == "Player") {
+            var health = collision.collider.gameObject.GetComponent<PlayerHealth>();
+            health.RecieveDamage(contactDamage);
+        }
     }
+
+    private void OnParticleCollision(GameObject other) {
+        Debug.Log("collision abstraite");
+    }
+
 }
