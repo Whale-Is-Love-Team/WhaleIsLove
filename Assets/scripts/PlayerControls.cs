@@ -76,6 +76,7 @@ public class PlayerControls : MonoBehaviour {
         this.micSource = this.GetComponentInChildren<MicroHandler>();
         this.values = new float[numValues];
         _intialScale = projectile.transform.localScale;
+
     }
 	
 	// Update is called once per frame
@@ -118,6 +119,7 @@ public class PlayerControls : MonoBehaviour {
             float ratioSize = 1f - inputWave;
             _nextTimeAttack = currentTime + ratioSize * defaultCooldown + defaultCooldown/2;
             projectile.transform.localScale = new Vector3(_intialScale.x, .5f + range * ratioSize, _intialScale.z);
+            this.GetComponent<Animator>().SetTrigger("shoot");
             GameObject.Instantiate(projectile, generator.transform.position, Quaternion.identity);
             //// Length
             //var main = this.waveGenerator.main;
