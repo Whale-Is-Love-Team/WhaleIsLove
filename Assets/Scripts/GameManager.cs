@@ -21,4 +21,5 @@ public class GameManager : MonoBehaviour {
     }
 
     public bool Running { get; set; }
+    public int Score { get; set; }
 }
