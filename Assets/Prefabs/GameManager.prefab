@@ -57,4 +57,4 @@ MonoBehaviour:
   - 1.5
   - 2
   - 3
-  comboTimeout: 5
+  comboTimeout: 2
