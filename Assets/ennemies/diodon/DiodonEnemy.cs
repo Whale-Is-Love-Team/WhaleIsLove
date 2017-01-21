@@ -61,10 +61,6 @@ public class DiodonEnemy : AbstractEnemy {
         }
 	}
 
-    private void OnParticleCollision(GameObject other) {
-        GameObject.Destroy(gameObject);
-    }
-
     void FixedUpdate() {
         if(!_dontMove) {
             _rb2d.velocity = direction * moveSpeed * Time.fixedDeltaTime;

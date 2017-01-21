@@ -18,13 +18,14 @@ public abstract class AbstractEnemy : MonoBehaviour {
         _rb2d = GetComponent<Rigidbody2D>();
     }
 
-    public void OnCollisionEnter2D(Collision2D collision) {
+    public void OnTriggerEnter2D(Collider2D collider) {
         if (!GameManager.Instance.Running)
             return;
 
-        if(collision.collider.tag == "Player") {
-            var health = collision.collider.gameObject.GetComponent<PlayerHealth>();
+        if(collider.tag == "Player") {
+            var health = collider.gameObject.GetComponent<PlayerHealth>();
             health.RecieveDamage(contactDamage);
+            GameObject.Destroy(gameObject);
         }
     }
 
