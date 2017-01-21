@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour {
 
-
+    [Header("Movement Parameters")]
     public float speed = 6.0f;
     public bool grounded = false;
     public bool movesInX = false;
@@ -17,10 +17,26 @@ public class PlayerControls : MonoBehaviour {
     [SerializeField]
     private float inertiaMultiplier = 0;
 
-    public float pitchMin = 100;
-    public float pitchMax = 500;
-    public float loudnessThreshold = 8;
 
+    [Header("Audio Input Parameters")]
+    // public float pitchMin = 100; -> moved to pitch behavior
+    // public float pitchMax = 500;
+    [SerializeField]
+    private int numValues;
+    [SerializeField]
+    private AnimationCurve pitchBehavior = AnimationCurve.Linear(0, 1, 1, 1);
+    [SerializeField]
+    private AnimationCurve loundnessThresholdBehavior = AnimationCurve.Linear(0, 1, 1, 1);
+    [SerializeField]
+    private float pitchIn;
+    [SerializeField]
+    private float inputWave;
+    [SerializeField]
+    private float loudnessIn;
+    [SerializeField]
+    private float loudnessThreshold;
+
+    [Header("Wave Attack Parameters")]
     [SerializeField]
     private AnimationCurve waveStartingRadius = AnimationCurve.Linear(0, 1, 1, 0);
     [SerializeField]
@@ -42,6 +58,8 @@ public class PlayerControls : MonoBehaviour {
     private float nextWaveTimeMin = 0;
     private float nextWaveDisableTime = 0;
     private MicroHandler micSource = null;
+    private float[] values;
+    private int curIndex;
     
 	// Use this for initialization
 	void Start () {
@@ -53,6 +71,7 @@ public class PlayerControls : MonoBehaviour {
         sh.enabled = true;
         sh.shapeType = ParticleSystemShapeType.SingleSidedEdge;
         this.micSource = this.GetComponentInChildren<MicroHandler>();
+        this.values = new float[numValues];
 }
 	
 	// Update is called once per frame
@@ -62,52 +81,54 @@ public class PlayerControls : MonoBehaviour {
             this.moveDirection = new Vector3(0, 0, 0);
             if (movesInX) this.moveDirection.x = Input.GetAxis("Horizontal");
             if (movesInY) this.moveDirection.y = Input.GetAxis("Vertical");
+            this.moveDirection.Normalize();
             this.moveDirection *= this.speed;
         }
         else if (this.moveDirection.magnitude > 0.25) this.moveDirection *= inertiaMultiplier;
         else this.moveDirection = new Vector3(0, 0, 0);
 
         this.player.transform.Translate(this.moveDirection * Time.deltaTime);
+        
 
-        float loudness = micSource.loudness;
-        float pitch = micSource.pitch;
+        /*float pitch = micSource.pitch;
         if (pitch > pitchMax) pitch = pitchMax;
         if (pitch < pitchMin) pitch = pitchMin;
+        float inputWave = (pitch - pitchMin) / (pitchMax - pitchMin);*/
+        loudnessIn = micSource.loudness;
+        inputWave = pitchBehavior.Evaluate(pitchIn);
+        loudnessThreshold = loundnessThresholdBehavior.Evaluate(inputWave);
 
-        // Debug.Log("loudness " + loudness);
-        // Debug.Log("pitch " + pitch);
+        values[curIndex] = micSource.pitch / numValues;
+        curIndex = (curIndex + 1) % numValues;
 
-        if (loudness >= loudnessThreshold && Time.time >= nextWaveTimeMin)
+        pitchIn = 0;
+        for (int i = 0; i < numValues; i++) pitchIn += values[i];
+
+        if (loudnessIn >= loudnessThreshold && Time.time >= nextWaveTimeMin)
         {
             var emission = this.waveGenerator.emission;
             emission.enabled = true;
-
-            float tmp = (pitch - pitchMin) / (pitchMax - pitchMin);
             // Length
             var main = this.waveGenerator.main;
-            float lifeTime = waveLengthBehavior.Evaluate(tmp);
+            float lifeTime = waveLengthBehavior.Evaluate(inputWave);
             main.startLifetime = lifeTime;
             // Radius
             var sizeOverLifetimeParam = this.waveGenerator.sizeOverLifetime;
             sizeOverLifetimeParam.enabled = true;
-            //sizeOverLifetimeParam.y = waveRadiusBehavior.Evaluate(tmp);
-            var sizeOverLifetime = new ParticleSystem.MinMaxCurve();
             var curve = new AnimationCurve();
-            curve.AddKey(0, waveStartingRadius.Evaluate(tmp));
-            curve.AddKey(lifeTime, waveRadiusBehavior.Evaluate(tmp));
-            // Debug.Log("lifeTime " + lifeTime);
-            // Debug.Log("waveRadiusBehavior.Evaluate(tmp) " + waveRadiusBehavior.Evaluate(tmp));
+            curve.AddKey(0, waveStartingRadius.Evaluate(inputWave));
+            curve.AddKey(lifeTime, waveRadiusBehavior.Evaluate(inputWave));
             sizeOverLifetimeParam.y = new ParticleSystem.MinMaxCurve(1, curve);
             // Width
-            sizeOverLifetimeParam.x = waveWidthBehavior.Evaluate(tmp);
+            sizeOverLifetimeParam.x = waveWidthBehavior.Evaluate(inputWave);
             // Speed
-            main.startSpeed = waveSpeedBehavior.Evaluate(tmp);
+            main.startSpeed = waveSpeedBehavior.Evaluate(inputWave);
             // Emission rate
             var emissionRate = emission.rateOverTime;
-            emissionRate.constant = waveNumberBehavior.Evaluate(tmp);
+            emissionRate.constant = waveNumberBehavior.Evaluate(inputWave);
             emission.rateOverTime = emissionRate;
             // CD
-            nextWaveTimeMin = Time.time + waveCouldownBehavior.Evaluate(tmp);
+            nextWaveTimeMin = Time.time + waveCouldownBehavior.Evaluate(inputWave);
             nextWaveDisableTime = Time.time + 1;
         }
         else if (this.waveGenerator.isPlaying && Time.time >= nextWaveDisableTime)
