@@ -773,6 +773,11 @@ Prefab:
       propertyPath: InheritVelocityModule.m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
+        type: 2}
+      propertyPath: VelocityModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2296a43ed5c161c42bfff359f44ab855, type: 2}
   m_IsPrefabParent: 0
