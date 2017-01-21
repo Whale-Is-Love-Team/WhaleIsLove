@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114266589969875506}
   - component: {fileID: 50016079821982552}
   - component: {fileID: 61290022461134446}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DiodonProj
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0.0022478104, y: -0.000000059604645}
   serializedVersion: 2
