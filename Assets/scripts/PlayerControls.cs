@@ -57,6 +57,9 @@ public class PlayerControls : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(!GameManager.Instance.Running)
+            return;
+
         if (!grounded)
         {
             this.moveDirection = new Vector3(0, 0, 0);

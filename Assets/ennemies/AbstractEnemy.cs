@@ -17,6 +17,7 @@ public abstract class AbstractEnemy : MonoBehaviour {
     }
 
     public void OnCollisionEnter2D(Collision2D collision) {
-        
+        if (!GameManager.Instance.Running)
+            return;
     }
 }

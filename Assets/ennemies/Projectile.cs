@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour {
 	}
 	
     void Update() {
-        if (Time.realtimeSinceStartup > _lifeTime)
+        if (!GameManager.Instance.Running || Time.realtimeSinceStartup > _lifeTime)
             GameObject.Destroy(gameObject);
     }
 
