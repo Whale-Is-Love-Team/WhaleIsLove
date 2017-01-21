@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour {
     protected float _lifeTime;
     protected Vector2 _direction;
     protected Rigidbody2D _rb2D;
+    protected int _damage;
 
     public void SetProjSpeed(float speed) {
         _projSpeed = speed;
@@ -18,13 +19,16 @@ public class Projectile : MonoBehaviour {
         _lifeTime = lifeTime;
     }
 
+    public void SetDamage(int damage) {
+        _damage = damage;
+    }
 	void Start () {
         _direction = gameObject.transform.up;
         _rb2D = GetComponent<Rigidbody2D>();
 	}
 	
     void Update() {
-        if (Time.realtimeSinceStartup > _lifeTime)
+        if (!GameManager.Instance.Running || Time.realtimeSinceStartup > _lifeTime)
             GameObject.Destroy(gameObject);
     }
 
@@ -34,7 +38,8 @@ public class Projectile : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.collider.tag == "Player") {
-            Debug.Log("Impact");
+            var health = collision.collider.gameObject.GetComponent<PlayerHealth>();
+            health.RecieveDamage(_damage);
             GameObject.Destroy(gameObject);
         }
     }

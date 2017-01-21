@@ -332,13 +332,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 50
   direction: {x: -1, y: 0}
+  contactDamage: 0
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
   projectileSpeed: 75
   projectileNumber: 8
   projectileDistance: 100
-  projectile: {fileID: 1687111799751210, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
+  projectile: {fileID: 1271721251319396, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
   slowFactor: 0.1
 --- !u!114 &114115802093670280
 MonoBehaviour:
@@ -353,13 +354,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 50
   direction: {x: -1, y: 0}
+  contactDamage: 0
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
   projectileSpeed: 75
   projectileNumber: 8
   projectileDistance: 100
-  projectile: {fileID: 1687111799751210, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
+  projectile: {fileID: 1271721251319396, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
   slowFactor: 0.1
 --- !u!114 &114332086049133432
 MonoBehaviour:
@@ -374,13 +376,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 50
   direction: {x: -1, y: 0}
+  contactDamage: 0
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
   projectileSpeed: 75
   projectileNumber: 8
   projectileDistance: 100
-  projectile: {fileID: 1687111799751210, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
+  projectile: {fileID: 1271721251319396, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
   slowFactor: 0.1
 --- !u!114 &114817598298094712
 MonoBehaviour:
@@ -395,13 +398,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 50
   direction: {x: -1, y: 0}
+  contactDamage: 0
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
   projectileSpeed: 75
   projectileNumber: 8
   projectileDistance: 100
-  projectile: {fileID: 1687111799751210, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
+  projectile: {fileID: 1271721251319396, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
   slowFactor: 0.1
 --- !u!212 &212018649831876350
 SpriteRenderer:

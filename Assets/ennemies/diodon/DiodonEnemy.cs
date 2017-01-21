@@ -7,7 +7,7 @@ public class DiodonEnemy : AbstractEnemy {
 
     // Exposed fields
     [SerializeField]
-    protected float spikesDamage = 1f;
+    protected int spikesDamage = 1;
     [SerializeField]
     [Tooltip("time between attacks in seconds")]
     protected float spikesDelay = 2f;
@@ -30,10 +30,12 @@ public class DiodonEnemy : AbstractEnemy {
     protected float _nextAttackAt = 0;
     protected float _staticUntil;
     protected bool _dontMove = false;
+    protected GameObject _player;
 
     new void Start() {
         base.Start();
         direction = Vector2.left;
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update () {
@@ -42,7 +44,7 @@ public class DiodonEnemy : AbstractEnemy {
             _dontMove = false;
         }
 
-        if(currentTime > _nextAttackAt) {
+        if (currentTime > _nextAttackAt && Vector2.Distance(gameObject.transform.position, _player.transform.position) < 5) {
             _staticUntil = currentTime + spikesAttackTime;
             _nextAttackAt = currentTime + spikesDelay;
             _dontMove = true;
@@ -54,9 +56,14 @@ public class DiodonEnemy : AbstractEnemy {
                 var proj = obj.GetComponent<Projectile>();
                 proj.SetProjSpeed(projectileSpeed);
                 proj.SetLifeTime(projLifeTime);
+                proj.SetDamage(spikesDamage);
             }
         }
 	}
+
+    private void OnParticleCollision(GameObject other) {
+        GameObject.Destroy(gameObject);
+    }
 
     void FixedUpdate() {
         if(!_dontMove) {
