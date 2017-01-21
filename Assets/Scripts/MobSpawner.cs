@@ -11,7 +11,7 @@ public class MobSpawner : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        InvokeRepeating("Spawn", spawnTime, spawnTime);
+        InvokeRepeating("Spawn", 0, spawnTime);
     }
 
     void Spawn()
