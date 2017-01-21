@@ -10,6 +10,14 @@ public class PlayerControls : MonoBehaviour {
     public bool movesInX = false;
     public bool movesInY = true;
 
+    public GameObject projectile;
+    public GameObject generator;
+    public float defaultCooldown = 1f;
+    public float threshold = .2f;
+
+    protected Vector3 _intialScale;
+    protected float _nextTimeAttack = 0;
+
     [SerializeField]
     float initialXPositionInUnits = 0;
     [SerializeField]
@@ -19,8 +27,8 @@ public class PlayerControls : MonoBehaviour {
 
 
     [Header("Audio Input Parameters")]
-    // public float pitchMin = 100; -> moved to pitch behavior
-    // public float pitchMax = 500;
+    public float pitchMin = 100;
+     public float pitchMax = 500;
     [SerializeField]
     private int numValues;
     [SerializeField]
@@ -65,14 +73,10 @@ public class PlayerControls : MonoBehaviour {
 	void Start () {
         this.player = this.gameObject;
         this.player.transform.position = new Vector3(initialXPositionInUnits, 0, initialYPositionInUnits);
-        this.waveGenerator = this.GetComponentInChildren<ParticleSystem>();
-        this.waveGenerator.Play();
-        var sh = this.waveGenerator.shape;
-        sh.enabled = true;
-        sh.shapeType = ParticleSystemShapeType.SingleSidedEdge;
         this.micSource = this.GetComponentInChildren<MicroHandler>();
         this.values = new float[numValues];
-}
+        _intialScale = projectile.transform.localScale;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -91,15 +95,15 @@ public class PlayerControls : MonoBehaviour {
         else this.moveDirection = new Vector3(0, 0, 0);
 
         this.player.transform.Translate(this.moveDirection * Time.deltaTime);
-        
 
-        /*float pitch = micSource.pitch;
+
+        float pitch = micSource.pitch;
         if (pitch > pitchMax) pitch = pitchMax;
         if (pitch < pitchMin) pitch = pitchMin;
-        float inputWave = (pitch - pitchMin) / (pitchMax - pitchMin);*/
+        float inputWave = (pitch - pitchMin) / (pitchMax - pitchMin);
         loudnessIn = micSource.loudness;
-        inputWave = pitchBehavior.Evaluate(pitchIn);
-        loudnessThreshold = loundnessThresholdBehavior.Evaluate(inputWave);
+        //inputWave = pitchBehavior.Evaluate(pitchIn);
+        //loudnessThreshold = loundnessThresholdBehavior.Evaluate(inputWave);
 
         values[curIndex] = micSource.pitch / numValues;
         curIndex = (curIndex + 1) % numValues;
@@ -107,37 +111,36 @@ public class PlayerControls : MonoBehaviour {
         pitchIn = 0;
         for (int i = 0; i < numValues; i++) pitchIn += values[i];
 
-        if (loudnessIn >= loudnessThreshold && Time.time >= nextWaveTimeMin)
+        var currentTime = Time.realtimeSinceStartup;
+        if (loudnessIn >= threshold && currentTime >= _nextTimeAttack)
         {
-            var emission = this.waveGenerator.emission;
-            emission.enabled = true;
-            // Length
-            var main = this.waveGenerator.main;
-            float lifeTime = waveLengthBehavior.Evaluate(inputWave);
-            main.startLifetime = lifeTime;
-            // Radius
-            var sizeOverLifetimeParam = this.waveGenerator.sizeOverLifetime;
-            sizeOverLifetimeParam.enabled = true;
-            var curve = new AnimationCurve();
-            curve.AddKey(0, waveStartingRadius.Evaluate(inputWave));
-            curve.AddKey(lifeTime, waveRadiusBehavior.Evaluate(inputWave));
-            sizeOverLifetimeParam.y = new ParticleSystem.MinMaxCurve(1, curve);
-            // Width
-            sizeOverLifetimeParam.x = waveWidthBehavior.Evaluate(inputWave);
-            // Speed
-            main.startSpeed = waveSpeedBehavior.Evaluate(inputWave);
-            // Emission rate
-            var emissionRate = emission.rateOverTime;
-            emissionRate.constant = waveNumberBehavior.Evaluate(inputWave);
-            emission.rateOverTime = emissionRate;
-            // CD
-            nextWaveTimeMin = Time.time + waveCouldownBehavior.Evaluate(inputWave);
-            nextWaveDisableTime = Time.time + 1;
-        }
-        else if (this.waveGenerator.isPlaying && Time.time >= nextWaveDisableTime)
-        {
-            var emission = this.waveGenerator.emission;
-            emission.enabled = false;
+            float range = 2 - .5f;
+            float ratioSize = 1f - inputWave;
+            _nextTimeAttack = currentTime + ratioSize * defaultCooldown + defaultCooldown/2;
+            projectile.transform.localScale = new Vector3(_intialScale.x, .5f + range * ratioSize, _intialScale.z);
+            GameObject.Instantiate(projectile, generator.transform.position, Quaternion.identity);
+            //// Length
+            //var main = this.waveGenerator.main;
+            //float lifeTime = waveLengthBehavior.Evaluate(inputWave);
+            //main.startLifetime = lifeTime;
+            //// Radius
+            //var sizeOverLifetimeParam = this.waveGenerator.sizeOverLifetime;
+            //sizeOverLifetimeParam.enabled = true;
+            //var curve = new AnimationCurve();
+            //curve.AddKey(0, waveStartingRadius.Evaluate(inputWave));
+            //curve.AddKey(lifeTime, waveRadiusBehavior.Evaluate(inputWave));
+            //sizeOverLifetimeParam.y = new ParticleSystem.MinMaxCurve(1, curve);
+            //// Width
+            //sizeOverLifetimeParam.x = waveWidthBehavior.Evaluate(inputWave);
+            //// Speed
+            //main.startSpeed = waveSpeedBehavior.Evaluate(inputWave);
+            //// Emission rate
+            //var emissionRate = emission.rateOverTime;
+            //emissionRate.constant = waveNumberBehavior.Evaluate(inputWave);
+            //emission.rateOverTime = emissionRate;
+            //// CD
+            //nextWaveTimeMin = Time.time + waveCouldownBehavior.Evaluate(inputWave);
+            //nextWaveDisableTime = Time.time + 1;
         }
 	}
 }

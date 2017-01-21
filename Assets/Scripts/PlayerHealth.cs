@@ -16,9 +16,15 @@ public class PlayerHealth : MonoBehaviour {
             return;
 
         life -= damages;
-        if(life < 0) {
+        if(life <= 0) {
             Debug.Log("Game Over");
             GameManager.Instance.Running = false;  
+        }
+    }
+
+    public void Update() {
+        if(life <= 0) {
+            GameManager.Instance.Running = false;
         }
     }
 }
