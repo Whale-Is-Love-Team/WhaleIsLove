@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: b6a14671d501f2d4685f96f231aaa151
+timeCreated: 1485034591
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Whale_is_Love
+  fontNames:
+  - Whale_is_Love
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

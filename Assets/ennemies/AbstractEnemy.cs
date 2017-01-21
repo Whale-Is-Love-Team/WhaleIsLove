@@ -11,6 +11,8 @@ public abstract class AbstractEnemy : MonoBehaviour {
     protected Vector2 direction;
     [SerializeField]
     protected int contactDamage;
+    [SerializeField]
+    protected int bonusScore;
 
     protected Rigidbody2D _rb2d;
 
@@ -27,6 +29,13 @@ public abstract class AbstractEnemy : MonoBehaviour {
             health.RecieveDamage(contactDamage);
             GameObject.Destroy(gameObject);
         }
+    }
+
+    public void OnDying() {
+        var gm = GameManager.Instance;
+        gm.Score += (int) (gm.Combo * bonusScore);
+        gm.IncreaseKillCount();
+        GameObject.Destroy(gameObject);
     }
 
     private void OnParticleCollision(GameObject other) {

@@ -393,6 +393,7 @@ MonoBehaviour:
   moveSpeed: 50
   direction: {x: -1, y: 0}
   contactDamage: 1
+  bonusScore: 10
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
@@ -415,6 +416,7 @@ MonoBehaviour:
   moveSpeed: 50
   direction: {x: -1, y: 0}
   contactDamage: 1
+  bonusScore: 10
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
@@ -437,6 +439,7 @@ MonoBehaviour:
   moveSpeed: 50
   direction: {x: -1, y: 0}
   contactDamage: 1
+  bonusScore: 10
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
@@ -459,6 +462,7 @@ MonoBehaviour:
   moveSpeed: 50
   direction: {x: -1, y: 0}
   contactDamage: 1
+  bonusScore: 10
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
