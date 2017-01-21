@@ -28,6 +28,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1732949016539514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4153824599669466}
+  - component: {fileID: 82565054567590404}
+  - component: {fileID: 114775480129474542}
+  m_Layer: 0
+  m_Name: MicHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1991690576769900
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,6 +75,19 @@ Transform:
   m_Father: {fileID: 4205804724989742}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!4 &4153824599669466
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732949016539514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4205804724989742}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4205804724989742
 Transform:
   m_ObjectHideFlags: 1
@@ -65,13 +95,94 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1061464288084870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2641354, y: -1.5499103, z: 0}
+  m_LocalPosition: {x: -5.6957417, y: -1.1079737, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4112756578798246}
+  - {fileID: 4153824599669466}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82565054567590404
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732949016539514}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114185320948610692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,17 +194,114 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529b039e24fcf0f4cbb057bd682574b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 25
   grounded: 0
-  movesInX: 0
+  movesInX: 1
   movesInY: 1
   initialXPositionInUnits: 0
   initialYPositionInUnits: 0
-  pitch: 250
-  loudness: 10
-  pitchMin: 100
-  pitchMax: 500
-  loudnessThreshold: 8
+  inertiaMultiplier: 0.25
+  numValues: 5
+  pitchBehavior:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 51.64209
+      value: -0.00047653913
+      inSlope: 0.000022884926
+      outSlope: 0.000022884926
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 197.89755
+      value: 0.005848959
+      inSlope: 0.00032742377
+      outSlope: 0.00032742377
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 200.30743
+      value: 0.25688
+      inSlope: 0.00023606714
+      outSlope: 0.00023606714
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 349.7476
+      value: 0.25957784
+      inSlope: 0.00012802726
+      outSlope: 0.00012802726
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 351.0971
+      value: 0.5022861
+      inSlope: 0.00037014615
+      outSlope: 0.00037014615
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 498.3847
+      value: 0.50377214
+      inSlope: -0.0000027224894
+      outSlope: -0.0000027224894
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 501.2929
+      value: 0.74767774
+      inSlope: 0.00000027519332
+      outSlope: 0.00000027519332
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 550.656
+      value: 0.75024706
+      inSlope: 0.000011498037
+      outSlope: 0.000011498037
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 552.21106
+      value: 1.0041084
+      inSlope: 0.000053384385
+      outSlope: 0.000053384385
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 598.5963
+      value: 1.0000979
+      inSlope: -0.000009011665
+      outSlope: -0.000009011665
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  loundnessThresholdBehavior:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: -0.10464599
+      value: -0.02767314
+      inSlope: 9.935408
+      outSlope: 9.935408
+      tangentMode: 0
+    - serializedVersion: 2
+      time: -0.003484714
+      value: 1.2024515
+      inSlope: 5.8891983
+      outSlope: 5.8891983
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1.0050296
+      value: 2.956252
+      inSlope: 6.3323975
+      outSlope: 6.3323975
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1.0826153
+      value: 10.014818
+      inSlope: 5.3232846
+      outSlope: 5.3232846
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  pitchIn: 0
+  inputWave: 0
+  loudnessIn: 0
+  loudnessThreshold: 10
   waveStartingRadius:
     serializedVersion: 2
     m_Curve:
@@ -116,16 +324,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: 1.0038445
-      inSlope: 9.046004
-      outSlope: 9.046004
+      time: -0.0009940357
+      value: 9.803282
+      inSlope: -6.9196124
+      outSlope: -6.9196124
       tangentMode: 34
     - serializedVersion: 2
-      time: 1
-      value: 10.049849
-      inSlope: 9.046004
-      outSlope: 9.046004
+      time: 0.9900596
+      value: 2.9455748
+      inSlope: -6.9196124
+      outSlope: -6.9196124
       tangentMode: 34
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -220,6 +428,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114775480129474542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732949016539514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ebcdd9d720e0d48a61298ba560f38d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 20
+  loudness: 0
+  pitch: 0
+  threshold: 0.02
 --- !u!198 &198244670221663156
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -272,7 +495,7 @@ ParticleSystem:
       m_PostInfinity: 2
       m_RotationOrder: 4
     minMaxState: 0
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: -206916361
@@ -2937,7 +3160,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: c25c8ce90baa2ad4d8bed33b3245fc25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
