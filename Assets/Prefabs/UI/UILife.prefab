@@ -166,7 +166,7 @@ MonoBehaviour:
   - {fileID: 1206694594705442}
   - {fileID: 1961439804003644}
   - {fileID: 1554600355009016}
-  life: 3
+  pHealth: {fileID: 0}
 --- !u!114 &114760614367175170
 MonoBehaviour:
   m_ObjectHideFlags: 1

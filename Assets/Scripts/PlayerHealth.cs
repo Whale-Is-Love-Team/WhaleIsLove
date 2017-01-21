@@ -7,6 +7,10 @@ public class PlayerHealth : MonoBehaviour {
     [SerializeField]
     protected int life;
 
+    public int Life {
+        get { return life; }
+    }
+
     public void RecieveDamage(int damages) {
         if (!GameManager.Instance.Running)
             return;

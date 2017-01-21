@@ -7,12 +7,12 @@ public class LifeDisplay : MonoBehaviour {
 
     [SerializeField]
     protected GameObject[] hearts;
-
-    public int life = 3;
+    [SerializeField]
+    protected PlayerHealth pHealth;
 
 	void Update () {
 		for(var i = 0; i < hearts.Length; i++) {
-            if(life > i) {
+            if(pHealth.Life > i) {
                 hearts[i].GetComponent<LifeHeart>().isEmpty = false;
             }
             else
