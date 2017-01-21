@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114185320948610692}
   - component: {fileID: 114338380233056296}
   - component: {fileID: 61271961705006970}
+  - component: {fileID: 95991095318166242}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -114,9 +115,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.21311808, y: 0.010656476}
   serializedVersion: 2
-  m_Size: {x: 4, y: 2}
+  m_Size: {x: 2.934411, y: 1.552454}
 --- !u!82 &82264574613624568
 AudioSource:
   m_ObjectHideFlags: 1
@@ -197,6 +198,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!95 &95991095318166242
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1061464288084870}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 346270e97332d354592cafa9631b5803, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114185320948610692
 MonoBehaviour:
   m_ObjectHideFlags: 1

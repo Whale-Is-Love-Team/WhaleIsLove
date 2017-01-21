@@ -722,31 +722,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 61271961705006970, guid: 2296a43ed5c161c42bfff359f44ab855,
+    - target: {fileID: 212406401727290758, guid: 2296a43ed5c161c42bfff359f44ab855,
         type: 2}
-      propertyPath: m_Offset.x
-      value: 0.21311808
-      objectReference: {fileID: 0}
-    - target: {fileID: 61271961705006970, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 2.934411
-      objectReference: {fileID: 0}
-    - target: {fileID: 61271961705006970, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 0.010656476
-      objectReference: {fileID: 0}
-    - target: {fileID: 61271961705006970, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 1.552454
-      objectReference: {fileID: 0}
-    - target: {fileID: 198244670221663156, guid: 2296a43ed5c161c42bfff359f44ab855,
-        type: 2}
-      propertyPath: VelocityModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0c559c5ac61035749867c216258ced2a,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2296a43ed5c161c42bfff359f44ab855, type: 2}
   m_IsPrefabParent: 0
