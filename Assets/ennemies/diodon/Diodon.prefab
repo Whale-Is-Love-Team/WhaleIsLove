@@ -115,7 +115,7 @@ MonoBehaviour:
   projectileSpeed: 75
   projectileNumber: 8
   projectileDistance: 100
-  projectile: {fileID: 1687111799751210, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
+  projectile: {fileID: 1271721251319396, guid: 65f036acbb0427843b8b35d171f09452, type: 2}
   slowFactor: 0.1
 --- !u!212 &212900074123944618
 SpriteRenderer:
