@@ -60,7 +60,7 @@ public class PlayerControls : MonoBehaviour {
     private MicroHandler micSource = null;
     private float[] values;
     private int curIndex;
-    private Animator animatorControlleur;
+    // private Animator animatorControlleur;
     
 	// Use this for initialization
 	void Start () {
@@ -73,7 +73,7 @@ public class PlayerControls : MonoBehaviour {
         sh.shapeType = ParticleSystemShapeType.SingleSidedEdge;
         this.micSource = this.GetComponentInChildren<MicroHandler>();
         this.values = new float[numValues];
-        this.animatorControlleur = this.GetComponent<Animator>();
+        // this.animatorControlleur = this.GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
@@ -92,8 +92,10 @@ public class PlayerControls : MonoBehaviour {
         else if (this.moveDirection.magnitude > 0.25) this.moveDirection *= inertiaMultiplier;
         else this.moveDirection = new Vector3(0, 0, 0);
 
+        /*
         this.animatorControlleur.SetFloat("moveX", moveDirection.x);
         this.animatorControlleur.SetFloat("moveY", moveDirection.y);
+        */
 
         this.player.transform.Translate(this.moveDirection * Time.deltaTime);
         
@@ -114,7 +116,7 @@ public class PlayerControls : MonoBehaviour {
 
         if (loudnessIn >= loudnessThreshold && Time.time >= nextWaveTimeMin)
         {
-            animatorControlleur.SetBool("shoot", true);
+            // animatorControlleur.SetBool("shoot", true);
             var emission = this.waveGenerator.emission;
             emission.enabled = true;
             // Length
@@ -142,7 +144,7 @@ public class PlayerControls : MonoBehaviour {
         }
         else if (this.waveGenerator.isPlaying && Time.time >= nextWaveDisableTime)
         {
-            animatorControlleur.SetBool("shoot", false);
+            // animatorControlleur.SetBool("shoot", false);
             var emission = this.waveGenerator.emission;
             emission.enabled = false;
         }
