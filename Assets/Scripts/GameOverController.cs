@@ -9,7 +9,6 @@ public class GameOverController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GameManager.Instance.Score = 2051;
         textGui = this.GetComponent<UnityEngine.UI.Text>();
     }
 	

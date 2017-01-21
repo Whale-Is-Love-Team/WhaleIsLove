@@ -13,7 +13,10 @@ public class GameManager : MonoBehaviour {
 
     public void Awake() {
         if (s_Instance == null)
+        {
             s_Instance = this;
+            DontDestroyOnLoad(this);
+        }
         else
             Destroy(this);
 

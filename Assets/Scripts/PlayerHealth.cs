@@ -18,7 +18,8 @@ public class PlayerHealth : MonoBehaviour {
         life -= damages;
         if(life <= 0) {
             Debug.Log("Game Over");
-            GameManager.Instance.Running = false;  
+            GameManager.Instance.Running = false;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         }
     }
 
