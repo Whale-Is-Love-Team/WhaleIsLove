@@ -25,7 +25,6 @@ public class GameOverController : MonoBehaviour {
     {
         if (cur < states.Length)
         {
-            Debug.Log("list size " + GameManager.Instance.scoreList.list.Count);
             if (states[cur] != null) states[cur].SetActive(true);
             if (cur > 0 && states[cur - 1] != null) states[cur - 1].SetActive(false);
 
@@ -39,6 +38,8 @@ public class GameOverController : MonoBehaviour {
                 if (Input.GetKeyUp("return") && inputField != null && !inputField.text.Equals(""))
                 {
                     GameManager.Instance.scoreList.list.Add(new KeyValuePair<string, int>(inputField.text, GameManager.Instance.Score));
+                    foreach (var pair in GameManager.Instance.scoreList.list) Debug.Log(pair.Key + " " + pair.Value);
+                    GameManager.Instance.Score = 0;
                     UnityEngine.SceneManagement.SceneManager.LoadScene("highscores");
                 }
             }

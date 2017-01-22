@@ -44,6 +44,7 @@ public class HighscoreController : MonoBehaviour {
 
     void generateList()
     {
+        foreach (var pair in GameManager.Instance.scoreList.list) Debug.Log("HS: " + pair.Key + " " + pair.Value);
         for (int n = 0; n < nbCol; n++)
         {
             int baseX = colX[n];
@@ -60,8 +61,9 @@ public class HighscoreController : MonoBehaviour {
                     color = color2;
                     createBackground(0, baseY - ((i - baseIndex + 1) * rowHeight));
                 }
-                if (GameManager.Instance != null && GameManager.Instance.scoreList != null && i < GameManager.Instance.scoreList.list.Count)
+                if (i < GameManager.Instance.scoreList.list.Count + 1)
                 {
+                    Debug.Log("OK");
                     text = GameManager.Instance.scoreList.list[i - 1].Key;
                     score = "" + GameManager.Instance.scoreList.list[i - 1].Value;
                 }
