@@ -35,6 +35,8 @@ public class GameOverController : MonoBehaviour {
             }
             else if (cur == 1)
             {
+                inputField.Select();
+                inputField.ActivateInputField();
                 if (Input.GetKeyUp("return") && inputField != null && !inputField.text.Equals(""))
                 {
                     GameManager.Instance.scoreList.list.Add(new KeyValuePair<string, int>(inputField.text, GameManager.Instance.Score));

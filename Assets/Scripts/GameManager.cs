@@ -17,6 +17,15 @@ public class GameManager : MonoBehaviour {
     protected float _comboLostAt;
 
     [SerializeField]
+    public GameObject canvas;
+
+    [SerializeField]
+    public UnityEngine.UI.Text textPrefab;
+
+    [SerializeField]
+    public GameObject player;
+
+    [SerializeField]
     public ScoreList scoreList;
 
     public void Awake() {
@@ -76,7 +85,10 @@ public class GameManager : MonoBehaviour {
     public void IncreaseKillCount() {
         _currentKillStep++;
         _comboLostAt = Time.realtimeSinceStartup + comboTimeout;
-        Debug.Log(_currentKillStep);
+        var textInstance = Instantiate(textPrefab, Camera.main.WorldToScreenPoint(player.transform.position) + new Vector3(0,150,0), Quaternion.identity, canvas.transform);
+        var text = textInstance.GetComponentInChildren<UnityEngine.UI.Text>();
+        text.text = _currentKillStep.ToString();
+        Debug.Log("textInstance position " + text.GetComponent<RectTransform>().transform.position);
     }
 
     public void ResetCombo() {

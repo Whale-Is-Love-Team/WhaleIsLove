@@ -51,6 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c420ce1a36238489e822bb1f959b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingText: {fileID: 1127486228678954, guid: 4245369c8697f4649ad12cf317d2cd92, type: 2}
+  player: {fileID: 0}
+  scoreList: {fileID: 11400000, guid: b31000b2a7f83f74f97d585f6e6c3963, type: 2}
   killStepsBeforeCombo: 0a00000032000000640000009f860100
   comboStep:
   - 1

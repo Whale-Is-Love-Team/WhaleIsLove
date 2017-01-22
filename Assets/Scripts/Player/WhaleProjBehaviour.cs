@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class WhaleProjBehaviour : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject coeur;
+    [SerializeField]
+    private Component blur;
+    
     protected Sprite _sprite;
     protected SpriteRenderer _renderer;
     protected Rigidbody2D _rb2D;
@@ -32,7 +37,10 @@ public class WhaleProjBehaviour : MonoBehaviour {
             var enemy = collider.gameObject.GetComponent<AbstractEnemy>();
             if (enemy == null)
                 return;
+            var position = enemy.transform.position;
             enemy.OnDying();
+            var coeurInstance = Instantiate(coeur);
+            coeurInstance.transform.position = position;
         }
     }
 

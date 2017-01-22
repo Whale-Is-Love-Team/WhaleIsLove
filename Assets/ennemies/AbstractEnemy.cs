@@ -13,6 +13,8 @@ public abstract class AbstractEnemy : MonoBehaviour {
     protected int contactDamage;
     [SerializeField]
     protected int bonusScore;
+    [SerializeField]
+    protected GameObject fadingText;
 
     protected Rigidbody2D _rb2d;
 
