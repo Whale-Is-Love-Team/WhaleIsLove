@@ -390,7 +390,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: -0.4292822, y: -0.11296916}
   serializedVersion: 2
@@ -432,7 +432,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: -0.4292822, y: -0.11296916}
   serializedVersion: 2
@@ -539,6 +539,7 @@ MonoBehaviour:
   bonusScore: 10
   dieOnCollision: 1
   life: 1
+  timeout: 0
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
@@ -564,6 +565,7 @@ MonoBehaviour:
   bonusScore: 10
   dieOnCollision: 1
   life: 1
+  timeout: 0
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
@@ -589,6 +591,7 @@ MonoBehaviour:
   bonusScore: 20
   dieOnCollision: 0
   life: 2
+  timeout: 0
   hornDamage: 1
   hornDelay: 3
   projectileSpeed: 150
@@ -612,6 +615,7 @@ MonoBehaviour:
   bonusScore: 20
   dieOnCollision: 0
   life: 2
+  timeout: 0
   hornDamage: 1
   hornDelay: 3
   projectileSpeed: 150
@@ -635,6 +639,7 @@ MonoBehaviour:
   bonusScore: 10
   dieOnCollision: 1
   life: 1
+  timeout: 0
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
