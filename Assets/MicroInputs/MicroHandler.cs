@@ -9,6 +9,13 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class MicroHandler : MonoBehaviour {
 
+    protected static MicroHandler s_Instance;
+    public static MicroHandler Instance {
+        get {
+            return s_Instance;
+        }
+    }
+
     protected AudioSource _source;
     protected string _micName;
     protected int qSamples = 1024;
@@ -27,6 +34,13 @@ public class MicroHandler : MonoBehaviour {
 
 
     void Start () {
+        if (s_Instance == null) {
+            s_Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(this);
+
         var mics = Microphone.devices;
         if (mics.Length > 0) {
             spectrum = new float[qSamples];
