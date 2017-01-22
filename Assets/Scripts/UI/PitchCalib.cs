@@ -35,7 +35,7 @@ public class PitchCalib : MonoBehaviour {
 	void Update () {
         if (_calibrated) {
             if(Input.GetKeyDown(KeyCode.Space)) {
-                SceneManager.LoadScene("main");
+                SceneManager.LoadScene("Menu");
             }
 
             return;
