@@ -11,6 +11,7 @@ public class PitchCalib : MonoBehaviour {
     public GameObject image;
     public Sprite spr_whale;
     public Sprite spr_narwhal;
+    public GameObject spaceBar;
     public float threshold = 1f;
     public float recordTime = 5f;
 
@@ -20,15 +21,15 @@ public class PitchCalib : MonoBehaviour {
     protected int _currentPitch = 0;
     protected bool _lowPitchSaved = false;
     protected bool _calibrated = false;
-    protected SpriteRenderer _renderer;
+    protected Image _picto;
 
 	void Start () {
         _mic = MicroHandler.Instance;
         _values = new List<int>();
-        _renderer = image.GetComponent<SpriteRenderer>();
+        _picto = image.GetComponent<Image>();
         _recordStopAt = Time.realtimeSinceStartup + recordTime;
         image.SetActive(true);
-        _renderer.sprite = spr_whale;
+        _picto.sprite = spr_whale;
 	}
 	
 	void Update () {
@@ -65,17 +66,19 @@ public class PitchCalib : MonoBehaviour {
 
     protected void RecordLowPitch() {
         GameManager.Instance.lowPitch = _currentPitch;
-        pitchText.text = "See the narwhal ?\nGive a high pitch !";
+        pitchText.text = "See the narwhal? Give a high pitch!";
         _currentPitch = 0;
         _values.Clear();
         _recordStopAt = Time.realtimeSinceStartup + recordTime;
         _lowPitchSaved = true;
-        _renderer.sprite = spr_narwhal;
+        _picto.sprite = spr_narwhal;
     }
 
     protected void RecordHighPitch() {
         GameManager.Instance.hightPitch = _currentPitch;
-        pitchText.text = "Whale scream calibrated.\nThank you !\nPress Spacebar to continue;";
+        pitchText.text = "Whale scream calibrated. Thank you!";
+        spaceBar.SetActive(true);
+        pitchValue.gameObject.SetActive(false);
         _calibrated = true;
         image.SetActive(false);
     }
