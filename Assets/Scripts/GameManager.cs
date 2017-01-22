@@ -17,16 +17,9 @@ public class GameManager : MonoBehaviour {
     protected float _comboLostAt;
 
     [SerializeField]
-    public GameObject canvas;
-
-    [SerializeField]
     public UnityEngine.UI.Text textPrefab;
-
-    [SerializeField]
-    public GameObject player;
-
-    [SerializeField]
-    public ScoreList scoreList;
+    
+    public List<KeyValuePair<string, int>> scoreList;
 
     public void Awake() {
         if (s_Instance == null)
@@ -42,6 +35,12 @@ public class GameManager : MonoBehaviour {
 
         _comboIndex = 0;
         _currentKillStep = 0;
+
+        var existing = PlayerPrefs.GetString("Highscore");
+        if (existing.Length == 0)
+            scoreList = new List<KeyValuePair<string, int>>();
+        else
+            scoreList = (List<KeyValuePair<string, int>>) JsonUtility.FromJson(existing, typeof(List<KeyValuePair<string, int>>));
     }
 
     public void Update() {
@@ -61,18 +60,22 @@ public class GameManager : MonoBehaviour {
 
         if(_currentKillStep > 0 && currentTime > _comboLostAt) {
             ResetCombo();
-            Debug.Log("combo timeout");
         }
 
         if(_currentKillStep >= killStepsBeforeCombo[_comboIndex] && _comboIndex < killStepsBeforeCombo.Length - 1) {
             _comboIndex++;
-            Debug.Log(_comboIndex);
         }
     }
 
+    [Header("Micro params")]
+    public float lowPitch;
+    public float hightPitch;
+
+    [Header("Combo params")]
     public int[] killStepsBeforeCombo;
     public float[] comboStep;
     public float comboTimeout = 1f;
+
 
     public int Score { get; set; }
     public float Combo {
@@ -85,10 +88,12 @@ public class GameManager : MonoBehaviour {
     public void IncreaseKillCount() {
         _currentKillStep++;
         _comboLostAt = Time.realtimeSinceStartup + comboTimeout;
-        var textInstance = Instantiate(textPrefab, Camera.main.WorldToScreenPoint(player.transform.position) + new Vector3(0,150,0), Quaternion.identity, canvas.transform);
+        var prefab = textPrefab;
+        var vector = Camera.main.WorldToScreenPoint(GameObject.FindGameObjectWithTag("Player").transform.position) + new Vector3(0, 150, 0);
+        var transform = GameObject.FindGameObjectWithTag("Canvas").transform;
+        var textInstance = Instantiate(prefab, vector, Quaternion.identity, transform);
         var text = textInstance.GetComponentInChildren<UnityEngine.UI.Text>();
         text.text = _currentKillStep.ToString();
-        Debug.Log("textInstance position " + text.GetComponent<RectTransform>().transform.position);
     }
 
     public void ResetCombo() {

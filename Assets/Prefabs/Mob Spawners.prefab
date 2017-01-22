@@ -52,5 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 1900961528646972, guid: 71e6034fe41312841ba69269319fc8c5, type: 2}
-  spawnTime: 5
+  - wave: {fileID: 1900961528646972, guid: 71e6034fe41312841ba69269319fc8c5, type: 2}
+    cooldown: 5

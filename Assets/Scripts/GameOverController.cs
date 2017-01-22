@@ -39,9 +39,18 @@ public class GameOverController : MonoBehaviour {
                 inputField.ActivateInputField();
                 if (Input.GetKeyUp("return") && inputField != null && !inputField.text.Equals(""))
                 {
-                    GameManager.Instance.scoreList.list.Add(new KeyValuePair<string, int>(inputField.text, GameManager.Instance.Score));
-                    foreach (var pair in GameManager.Instance.scoreList.list) Debug.Log(pair.Key + " " + pair.Value);
+                    GameManager.Instance.scoreList.Add(new KeyValuePair<string, int>(inputField.text, GameManager.Instance.Score));
+                    GameManager.Instance.scoreList.Sort(delegate(KeyValuePair<string, int> pairA, KeyValuePair<string, int> pairB) {
+                        if (pairA.Value > pairB.Value) return -1;
+                        else if (pairA.Value < pairB.Value) return 1;
+                        else return 0;
+                    });
+                    PlayerPrefs.SetString("Highscore", JsonUtility.ToJson(GameManager.Instance.scoreList));
+                    PlayerPrefs.Save();
+                    foreach (var pair in GameManager.Instance.scoreList) Debug.Log(pair.Key + " " + pair.Value);
+                    GameManager.Instance.ResetCombo();
                     GameManager.Instance.Score = 0;
+                    GameManager.Instance.Running = true;
                     UnityEngine.SceneManagement.SceneManager.LoadScene("highscores");
                 }
             }

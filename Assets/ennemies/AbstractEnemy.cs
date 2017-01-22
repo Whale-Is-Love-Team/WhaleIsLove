@@ -13,13 +13,20 @@ public abstract class AbstractEnemy : MonoBehaviour {
     protected int contactDamage;
     [SerializeField]
     protected int bonusScore;
-
+    [SerializeField]
+    protected bool dieOnCollision;
+    public int life;
+    
     protected Rigidbody2D _rb2d;
+    protected SpriteRenderer _renderer;
+    protected float _blinkUntil;
+    protected bool _blinking = false;
 
     protected bool alive = true; 
 
     public void Start() {
         _rb2d = GetComponent<Rigidbody2D>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     public void OnCollisionEnter2D(Collision2D collision) {
@@ -29,18 +36,31 @@ public abstract class AbstractEnemy : MonoBehaviour {
         if(alive && collision.collider.tag == "Player") {
             var health = collision.collider.gameObject.GetComponent<PlayerHealth>();
             health.RecieveDamage(contactDamage);
-            GameObject.Destroy(gameObject);
+            if(dieOnCollision)
+                OnDying();
         }
     }
 
-    void Update()
-    {
-        if (transform.position.x < -11) Destroy(gameObject);  
+    public void Update() {
+        var current = Time.realtimeSinceStartup;
+        if(_blinking && current > _blinkUntil) {
+            _blinking = false;
+            _renderer.color = Color.white;
+        }
+
+        if(_blinking) {
+            if (_renderer.color == Color.white)
+                _renderer.color = Color.red;
+            else
+                _renderer.color = Color.white;
+        }
+
+        if (transform.position.x < -11) Destroy(gameObject);
     }
 
     public void OnDying() {
         var gm = GameManager.Instance;
-        gm.Score += (int) (gm.Combo * bonusScore);
+        gm.Score += (int)(gm.Combo * bonusScore);
         gm.IncreaseKillCount();
         var anim = GetComponent<Animator>();
         anim.SetBool("dead", true);
@@ -48,8 +68,9 @@ public abstract class AbstractEnemy : MonoBehaviour {
         Destroy(gameObject.GetComponent<BoxCollider2D>());
     }
 
-    private void OnParticleCollision(GameObject other) {
-        Debug.Log("collision abstraite");
+    public void Blink() {
+        _blinking = true;
+        _blinkUntil = Time.realtimeSinceStartup + 2f;
     }
 
 }

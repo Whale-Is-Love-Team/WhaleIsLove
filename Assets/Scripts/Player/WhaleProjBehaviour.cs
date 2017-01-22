@@ -49,8 +49,8 @@ public class WhaleProjBehaviour : MonoBehaviour {
             var enemy = collider.gameObject.GetComponent<AbstractEnemy>();
             if (enemy == null)
                 return;
+
             var position = enemy.transform.position;
-            enemy.OnDying();
             var coeurInstance = Instantiate(coeur);
             coeurInstance.transform.position = position;
 
@@ -65,6 +65,12 @@ public class WhaleProjBehaviour : MonoBehaviour {
                 blur.enabled = true;
                 blurEndtime = Time.time + blurTimeout;
             }
+            enemy.life--;
+
+            if (enemy.life <= 0)
+                enemy.OnDying();
+            else
+                enemy.Blink();
         }
     }
 

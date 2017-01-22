@@ -37,9 +37,10 @@ public class PlayerControls : MonoBehaviour {
 
 
     [Header("Audio Input Parameters")]
+    protected MicroHandler micSource;
     public float threshold = .2f;
-    public float pitchMin = 100;
-    public float pitchMax = 500;
+    protected float pitchMin = 100;
+    protected float pitchMax = 500;
     [SerializeField]
     private float loudnessIn;
     //[SerializeField]
@@ -76,7 +77,6 @@ public class PlayerControls : MonoBehaviour {
     //private float nextWaveTimeMin = 0;
     //private float nextWaveDisableTime = 0;
     private Vector3 moveDirection = Vector3.zero;
-    private MicroHandler micSource = null;
     private float[] values;
     private int curIndex;
     
@@ -84,9 +84,13 @@ public class PlayerControls : MonoBehaviour {
 	void Start () {
         this.player = this.gameObject;
         this.player.transform.position = new Vector3(initialXPositionInUnits, 0, initialYPositionInUnits);
-        this.micSource = this.GetComponentInChildren<MicroHandler>();
         //this.values = new float[numValues];
         _intialScale = projectile.transform.localScale;
+
+        micSource = MicroHandler.Instance;
+        var gm = GameManager.Instance;
+        pitchMin = gm.lowPitch;
+        pitchMax = gm.hightPitch;
 
     }
 	
@@ -94,7 +98,6 @@ public class PlayerControls : MonoBehaviour {
 	void Update () {
         if(!GameManager.Instance.Running)
             return;
-
         //if (!grounded)
         //{
         //    if (movesInX) this.moveDirection.x = Input.GetAxis("Horizontal");
@@ -108,7 +111,7 @@ public class PlayerControls : MonoBehaviour {
         //this.player.transform.Translate(this.moveDirection * Time.deltaTime);
 
 
-        float pitch = micSource.pitch;
+        float pitch = MicroHandler.Instance.pitch;
         if (pitch > pitchMax) pitch = pitchMax;
         if (pitch < pitchMin) pitch = pitchMin;
         float inputWave = (pitch - pitchMin) / (pitchMax - pitchMin);

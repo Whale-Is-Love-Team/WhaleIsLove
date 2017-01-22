@@ -38,7 +38,9 @@ public class DiodonEnemy : AbstractEnemy {
         _player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void Update () {
+    new void Update () {
+        base.Update();
+
         var currentTime = Time.realtimeSinceStartup;
         if(currentTime > _staticUntil) {
             _dontMove = false;

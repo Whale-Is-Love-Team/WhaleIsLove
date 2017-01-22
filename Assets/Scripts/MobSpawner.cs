@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class MobSpawner : MonoBehaviour {
 
+    [System.Serializable]
+    public class Wave
+    {
+        public GameObject wave;
+        public float cooldown;
+    }
+
     [SerializeField]
-    private GameObject[] waves;                // The enemy prefab to be spawned.
-    [SerializeField]
-    private float spawnTime;            // How long between each spawn.
+    private Wave[] waves;
 
     // Use this for initialization
     void Start () {
-        InvokeRepeating("Spawn", 0, spawnTime);
+        StartCoroutine("SpawnWave");
     }
 
-    void Spawn()
+    IEnumerator SpawnWave()
     {
-        if (!GameManager.Instance.Running)
-            return;
+        while (GameManager.Instance.Running){
+            // Find a random index between zero and one less than the number of spawn points.
+            int wave = Random.Range(0, waves.Length);
 
-        // Find a random index between zero and one less than the number of spawn points.
-        int wave = Random.Range(0, waves.Length);
+            // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
+            Instantiate(waves[wave].wave, this.transform.position, this.transform.rotation);
 
-        // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-        Instantiate(waves[wave], this.transform.position, this.transform.rotation);
+            yield return new WaitForSeconds(waves[wave].cooldown);
+        }
     }
 }
