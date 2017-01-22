@@ -23,12 +23,11 @@ public class GameManager : MonoBehaviour {
         if (s_Instance == null)
         {
             s_Instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(this);
 
-        DontDestroyOnLoad(gameObject);
         Running = true;
         Score = 0;
 
