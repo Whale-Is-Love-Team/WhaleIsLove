@@ -17,6 +17,8 @@ public class HighscoreController : MonoBehaviour {
     private Color color2;
     [SerializeField]
     private Sprite backgroundSprite;
+    [SerializeField]
+    private float backgroundYScale;
 
     private int nbCol = 3;
     private int baseIndex = 1;
@@ -37,8 +39,8 @@ public class HighscoreController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.GetKeyUp("space") /*|| Input.GetButton("XboxA")*/) UnityEngine.SceneManagement.SceneManager.LoadScene("main");
+    }
 
     void generateList()
     {
@@ -100,10 +102,15 @@ public class HighscoreController : MonoBehaviour {
         rendererD.sprite = backgroundSprite;
         rendererD.color = Color.black;
         rendererD.material = material;
-        rendererD.sortingOrder = 2;
+        rendererD.material.color = new Color(rendererD.material.color.r, rendererD.material.color.g, rendererD.material.color.b, (float)0.5);
+        rendererD.enabled = true;
         dummy.transform.SetParent(gameObject.transform);
-        dummy.transform.position = Camera.main.transform.position + Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));// gameObject.transform.position; // Camera.main.ScreenToWorldPoint() + Camera.main.ScreenToWorldPoint Camera.main.(new Vector3(x, y, 0));
+        dummy.transform.position = Camera.main.transform.position + Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
         dummy.transform.position += Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 0));
+        var pos = dummy.transform.position;
+        pos.z = 0;
+        dummy.transform.position = pos;
+        dummy.transform.localScale = new Vector3(1, backgroundYScale, 1);
         return dummy;
     }
 }
