@@ -32,7 +32,12 @@ public class WhaleProjBehaviour : MonoBehaviour {
             var enemy = collider.gameObject.GetComponent<AbstractEnemy>();
             if (enemy == null)
                 return;
-            enemy.OnDying();
+            enemy.life--;
+
+            if (enemy.life <= 0)
+                enemy.OnDying();
+            else
+                enemy.Blink();
         }
     }
 
