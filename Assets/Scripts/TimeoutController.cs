@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TimeoutController : MonoBehaviour {
 
-    [SerializeField]
-    private float lifetime = 0;
+    public float lifetime = 0;
     private float endtime = 0;
 
 	// Use this for initialization
@@ -15,9 +14,14 @@ public class TimeoutController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.time > endtime)
+        if (lifetime > 0 && Time.time > endtime)
         {
             Destroy(gameObject);
         }
 	}
+
+    public void recalculate()
+    {
+        Start();
+    }
 }

@@ -9,11 +9,22 @@ public class PlayerHealth : MonoBehaviour {
     [SerializeField]
     protected int invulFrameCount = 12;
 
+    private float blurEndtime = 0;
+    [SerializeField]
+    private float blurTimeout = 0;
+    private MonoBehaviour blur;
+
     protected int _frameCounter;
     protected bool _invulnerability = false;
 
     public int Life {
         get { return life; }
+    }
+
+    public void Start()
+    {
+        blur = (MonoBehaviour)Camera.main.GetComponent("MotionBlur");
+        if (blur != null) blur.enabled = false;
     }
 
     public void RecieveDamage(int damages) {
@@ -28,6 +39,12 @@ public class PlayerHealth : MonoBehaviour {
         StartCoroutine("Red");
         _invulnerability = true;
         _frameCounter = 0;
+
+        if (blur != null)
+        {
+            blur.enabled = true;
+            blurEndtime = Time.time + blurTimeout;
+        }
 
         life -= damages;
         gm.ResetCombo();
@@ -48,6 +65,7 @@ public class PlayerHealth : MonoBehaviour {
         if(life <= 0) {
             GameManager.Instance.Running = false;
         }
+        if (blur != null && Time.time > blurEndtime) blur.enabled = false;  
     }
 
     IEnumerator Red()

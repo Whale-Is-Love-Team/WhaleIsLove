@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coeur: {fileID: 1242978979351352, guid: de1183fa1756d58489ed977527809027, type: 2}
-  blur: {fileID: 0}
+  colorTimeout: 0.05
+  blurTimeout: 0.05
 --- !u!212 &212284199367568140
 SpriteRenderer:
   m_ObjectHideFlags: 1

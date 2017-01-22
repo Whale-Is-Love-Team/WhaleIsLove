@@ -13,10 +13,10 @@ public abstract class AbstractEnemy : MonoBehaviour {
     protected int contactDamage;
     [SerializeField]
     protected int bonusScore;
-    [SerializeField]
-    protected GameObject fadingText;
 
     protected Rigidbody2D _rb2d;
+
+    protected bool alive = true; 
 
     public void Start() {
         _rb2d = GetComponent<Rigidbody2D>();
@@ -26,18 +26,26 @@ public abstract class AbstractEnemy : MonoBehaviour {
         if (!GameManager.Instance.Running)
             return;
 
-        if(collision.collider.tag == "Player") {
+        if(alive && collision.collider.tag == "Player") {
             var health = collision.collider.gameObject.GetComponent<PlayerHealth>();
             health.RecieveDamage(contactDamage);
             GameObject.Destroy(gameObject);
         }
     }
 
+    void Update()
+    {
+        if (transform.position.x < -11) Destroy(gameObject);  
+    }
+
     public void OnDying() {
         var gm = GameManager.Instance;
         gm.Score += (int) (gm.Combo * bonusScore);
         gm.IncreaseKillCount();
-        GameObject.Destroy(gameObject);
+        var anim = GetComponent<Animator>();
+        anim.SetBool("dead", true);
+        alive = false;
+        Destroy(gameObject.GetComponent<BoxCollider2D>());
     }
 
     private void OnParticleCollision(GameObject other) {

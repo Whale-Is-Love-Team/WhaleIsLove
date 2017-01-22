@@ -6,9 +6,7 @@ public class WhaleProjBehaviour : MonoBehaviour {
 
     [SerializeField]
     private GameObject coeur;
-    [SerializeField]
-    private Component blur;
-    
+
     protected Sprite _sprite;
     protected SpriteRenderer _renderer;
     protected Rigidbody2D _rb2D;
@@ -16,6 +14,16 @@ public class WhaleProjBehaviour : MonoBehaviour {
     protected Vector2 _direction = Vector2.right;
     protected float _lifeTime;
     protected float _programmedDeath;
+
+
+    private float colorEndtime = 0;
+    [SerializeField]
+    private float colorTimeout = 0;
+    private MonoBehaviour color;
+    private float blurEndtime = 0;
+    [SerializeField]
+    private float blurTimeout = 0;
+    private MonoBehaviour blur;
 
     public void SetMoveSpeed(float newSpeed) {
         _moveSpeed = newSpeed;
@@ -30,7 +38,11 @@ public class WhaleProjBehaviour : MonoBehaviour {
         _renderer = GetComponent<SpriteRenderer>();
         _sprite = _renderer.sprite;
         _rb2D = GetComponent<Rigidbody2D>();
-	}
+        color = (MonoBehaviour)Camera.main.GetComponent("ColorCorrectionCurves");
+        if (color != null) color.enabled = false;
+        blur = (MonoBehaviour)Camera.main.GetComponent("MotionBlur");
+        if (blur != null) blur.enabled = false;
+    }
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.tag == "Enemy") {
@@ -41,6 +53,18 @@ public class WhaleProjBehaviour : MonoBehaviour {
             enemy.OnDying();
             var coeurInstance = Instantiate(coeur);
             coeurInstance.transform.position = position;
+
+            if (color != null)
+            {
+                color.enabled = true;
+                colorEndtime = Time.time + colorTimeout;
+            }
+
+            if (blur != null)
+            {
+                blur.enabled = true;
+                blurEndtime = Time.time + blurTimeout;
+            }
         }
     }
 
@@ -49,6 +73,8 @@ public class WhaleProjBehaviour : MonoBehaviour {
         if(current > _programmedDeath) {
             GameObject.Destroy(gameObject);
         }
+        if (color != null && Time.time > colorEndtime) color.enabled = false;
+        if (blur != null && Time.time > blurEndtime) blur.enabled = false;
     }
 
     void FixedUpdate() {

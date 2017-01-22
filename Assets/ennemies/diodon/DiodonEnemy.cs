@@ -26,7 +26,7 @@ public class DiodonEnemy : AbstractEnemy {
     protected GameObject projectile;
     [SerializeField]
     protected float slowFactor = 0.1f;
-
+   
     protected float _nextAttackAt = 0;
     protected float _staticUntil;
     protected bool _dontMove = false;
@@ -44,7 +44,7 @@ public class DiodonEnemy : AbstractEnemy {
             _dontMove = false;
         }
 
-        if (currentTime > _nextAttackAt && Vector2.Distance(gameObject.transform.position, _player.transform.position) < 5) {
+        if (alive && currentTime > _nextAttackAt && Vector2.Distance(gameObject.transform.position, _player.transform.position) < 5) {
             _staticUntil = currentTime + spikesAttackTime;
             _nextAttackAt = currentTime + spikesDelay;
             _dontMove = true;
