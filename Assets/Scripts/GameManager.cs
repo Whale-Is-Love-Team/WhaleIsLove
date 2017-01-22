@@ -64,9 +64,15 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    [Header("Micro params")]
+    public float lowPitch;
+    public float hightPitch;
+
+    [Header("Combo params")]
     public int[] killStepsBeforeCombo;
     public float[] comboStep;
     public float comboTimeout = 1f;
+
 
     public int Score { get; set; }
     public float Combo {
