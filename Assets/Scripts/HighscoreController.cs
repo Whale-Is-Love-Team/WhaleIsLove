@@ -15,13 +15,17 @@ public class HighscoreController : MonoBehaviour {
     private Color color1;
     [SerializeField]
     private Color color2;
+    [SerializeField]
+    private Sprite backgroundSprite;
 
     private int nbCol = 3;
-    private int baseIndex = 0;
+    private int baseIndex = 1;
+    [SerializeField]
     private int maxNbRow = 7;
     [SerializeField]
     private int[] colX = { -250, 0, 250 };
     private string[] colName = { "RANK", "SCORE", "NAME" };
+    [SerializeField]
     private int rowHeight = 175;
     [SerializeField]
     private int yOffset = 250;
@@ -46,7 +50,23 @@ public class HighscoreController : MonoBehaviour {
             createText(baseX, baseY, colName[n], colorHeader);
             for (int i = baseIndex; i < baseIndex + maxNbRow; i++)
             {
-                if (n == 0) createText(baseX, baseY + ((i - baseIndex) *rowHeight), ""+n, colorHeader);
+                Color color = color1;
+                string text = "---";
+                string score = "---";
+                if (i % 2 == 0)
+                {
+                    color = color2;
+                    createBackground(0, baseY - ((i - baseIndex + 1) * rowHeight));
+                }
+                if (GameManager.Instance != null && GameManager.Instance.scoreList != null && i < GameManager.Instance.scoreList.list.Count)
+                {
+                    text = GameManager.Instance.scoreList.list[i - 1].Key;
+                    score = "" + GameManager.Instance.scoreList.list[i - 1].Value;
+                }
+                if (n == 0) createText(baseX, baseY - ((i - baseIndex + 1) *rowHeight), ""+i, color);
+                else if (n == 1) createText(baseX, baseY - ((i - baseIndex + 1) * rowHeight), score, color);
+                else if (n == 2) createText(baseX, baseY - ((i - baseIndex + 1) * rowHeight), text, color);
+
             }
         }
     }
@@ -54,6 +74,7 @@ public class HighscoreController : MonoBehaviour {
     GameObject createText(int x, int y, string value, Color color)
     {
         GameObject dummy = new GameObject();
+        dummy.SetActive(true);
         var transformD = dummy.AddComponent<RectTransform>();
         var rendererD = dummy.AddComponent<CanvasRenderer>();
         var textD = dummy.AddComponent<UnityEngine.UI.Text>();
@@ -67,6 +88,22 @@ public class HighscoreController : MonoBehaviour {
         textD.alignment = TextAnchor.MiddleCenter;
         textD.color = color;
         textD.material = material;
+        return dummy;
+    }
+
+    GameObject createBackground(int x, int y)
+    {
+        GameObject dummy = new GameObject();
+        dummy.name = "background";
+        dummy.SetActive(true);
+        var rendererD = dummy.AddComponent<SpriteRenderer>();
+        rendererD.sprite = backgroundSprite;
+        rendererD.color = Color.black;
+        rendererD.material = material;
+        rendererD.sortingOrder = 2;
+        dummy.transform.SetParent(gameObject.transform);
+        dummy.transform.position = Camera.main.transform.position + Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));// gameObject.transform.position; // Camera.main.ScreenToWorldPoint() + Camera.main.ScreenToWorldPoint Camera.main.(new Vector3(x, y, 0));
+        dummy.transform.position += Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 0));
         return dummy;
     }
 }

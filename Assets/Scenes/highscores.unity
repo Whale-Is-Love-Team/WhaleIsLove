@@ -204,7 +204,12 @@ MonoBehaviour:
   font: {fileID: 12800000, guid: 23422a38341dad847819b270d6d9707a, type: 3}
   material: {fileID: 2100000, guid: 23422a38341dad847819b270d6d9707a, type: 3}
   fontSize: 80
+  colorHeader: {r: 1, g: 1, b: 1, a: 1}
+  color1: {r: 1, g: 1, b: 1, a: 0.722}
+  color2: {r: 0.8428276, g: 0.24208924, b: 0.9117647, a: 0.591}
+  maxNbRow: 6
   colX: 38ffffff00000000c8000000
+  rowHeight: 80
   yOffset: 150
 --- !u!1 &192550517
 GameObject:
