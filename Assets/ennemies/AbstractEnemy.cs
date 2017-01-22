@@ -16,6 +16,10 @@ public abstract class AbstractEnemy : MonoBehaviour {
     [SerializeField]
     protected bool dieOnCollision;
     public int life;
+
+    [SerializeField]
+    protected float timeout;
+    protected float deathtime = 0;
     
     protected Rigidbody2D _rb2d;
     protected SpriteRenderer _renderer;
@@ -56,6 +60,11 @@ public abstract class AbstractEnemy : MonoBehaviour {
         }
 
         if (transform.position.x < -11) Destroy(gameObject);
+        if (!alive && Time.time > deathtime)
+        {
+            Debug.Log("AOZKDPOIAHZDFOIJAZDOji");
+            GameObject.Destroy(gameObject);
+        }
     }
 
     public void OnDying() {
@@ -66,6 +75,7 @@ public abstract class AbstractEnemy : MonoBehaviour {
         anim.SetBool("dead", true);
         alive = false;
         Destroy(gameObject.GetComponent<BoxCollider2D>());
+        deathtime = Time.time + timeout;
     }
 
     public void Blink() {

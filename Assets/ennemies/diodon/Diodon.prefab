@@ -112,6 +112,7 @@ MonoBehaviour:
   bonusScore: 10
   dieOnCollision: 1
   life: 1
+  timeout: 1.4
   spikesDamage: 1
   spikesDelay: 3
   spikesAttackTime: 1.5
