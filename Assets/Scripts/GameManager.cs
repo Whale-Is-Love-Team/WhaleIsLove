@@ -49,12 +49,10 @@ public class GameManager : MonoBehaviour {
 
         if(_currentKillStep > 0 && currentTime > _comboLostAt) {
             ResetCombo();
-            Debug.Log("combo timeout");
         }
 
         if(_currentKillStep >= killStepsBeforeCombo[_comboIndex] && _comboIndex < killStepsBeforeCombo.Length - 1) {
             _comboIndex++;
-            Debug.Log(_comboIndex);
         }
     }
 
@@ -73,7 +71,6 @@ public class GameManager : MonoBehaviour {
     public void IncreaseKillCount() {
         _currentKillStep++;
         _comboLostAt = Time.realtimeSinceStartup + comboTimeout;
-        Debug.Log(_currentKillStep);
     }
 
     public void ResetCombo() {
