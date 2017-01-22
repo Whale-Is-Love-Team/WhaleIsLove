@@ -39,7 +39,7 @@ public class HighscoreController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyUp("space") /*|| Input.GetButton("XboxA")*/) UnityEngine.SceneManagement.SceneManager.LoadScene("main");
+        if (Input.GetKeyUp("space") /*|| Input.GetButton("XboxA")*/) UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 
     void generateList()
