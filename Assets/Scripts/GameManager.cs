@@ -16,8 +16,7 @@ public class GameManager : MonoBehaviour {
     protected int _comboIndex;
     protected float _comboLostAt;
 
-    [SerializeField]
-    public ScoreList scoreList;
+    public List<KeyValuePair<string, int>> scoreList;
 
     public void Awake() {
         if (s_Instance == null)
@@ -33,6 +32,12 @@ public class GameManager : MonoBehaviour {
 
         _comboIndex = 0;
         _currentKillStep = 0;
+
+        var existing = PlayerPrefs.GetString("Highscore");
+        if (existing.Length == 0)
+            scoreList = new List<KeyValuePair<string, int>>();
+        else
+            scoreList = (List<KeyValuePair<string, int>>) JsonUtility.FromJson(existing, typeof(List<KeyValuePair<string, int>>));
     }
 
     public void Update() {
