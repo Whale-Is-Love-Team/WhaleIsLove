@@ -114,9 +114,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.21311808, y: 0.010656476}
   serializedVersion: 2
-  m_Size: {x: 4, y: 2}
+  m_Size: {x: 2.934411, y: 1.552454}
 --- !u!82 &82264574613624568
 AudioSource:
   m_ObjectHideFlags: 1
@@ -214,240 +214,21 @@ MonoBehaviour:
   movesInY: 1
   projectile: {fileID: 1720664544887112, guid: cf02db86f3bfb6044995a027c338334a, type: 2}
   generator: {fileID: 1112830750774146}
-  defaultCooldown: 0.5
-  threshold: 0.2
+  projHeightMin: 0.5
+  projHeightMax: 2
+  projSpeedMin: 50
+  projSpeedMax: 100
+  projLifeTimeMin: 2
+  projLifeTimeMax: 5
+  cooldownMin: 0.5
+  cooldownMax: 2
   initialXPositionInUnits: 0
   initialYPositionInUnits: 0
   inertiaMultiplier: 0.25
+  threshold: 0.2
   pitchMin: 100
   pitchMax: 500
-  numValues: 5
-  pitchBehavior:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 51.64209
-      value: -0.00047653913
-      inSlope: 0.000022884926
-      outSlope: 0.000022884926
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 197.89755
-      value: 0.005848959
-      inSlope: 0.00032742377
-      outSlope: 0.00032742377
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 200.30743
-      value: 0.25688
-      inSlope: 0.00023606714
-      outSlope: 0.00023606714
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 349.7476
-      value: 0.25957784
-      inSlope: 0.00012802726
-      outSlope: 0.00012802726
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 351.0971
-      value: 0.5022861
-      inSlope: 0.00037014615
-      outSlope: 0.00037014615
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 498.3847
-      value: 0.50377214
-      inSlope: -0.0000027224894
-      outSlope: -0.0000027224894
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 501.2929
-      value: 0.74767774
-      inSlope: 0.00000027519332
-      outSlope: 0.00000027519332
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 550.656
-      value: 0.75024706
-      inSlope: 0.000011498037
-      outSlope: 0.000011498037
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 552.21106
-      value: 1.0041084
-      inSlope: 0.000053384385
-      outSlope: 0.000053384385
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 598.5963
-      value: 1.0000979
-      inSlope: -0.000009011665
-      outSlope: -0.000009011665
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  loundnessThresholdBehavior:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: -0.10464599
-      value: -0.02767314
-      inSlope: 9.935408
-      outSlope: 9.935408
-      tangentMode: 0
-    - serializedVersion: 2
-      time: -0.003484714
-      value: 1.2024515
-      inSlope: 5.8891983
-      outSlope: 5.8891983
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1.0050296
-      value: 2.956252
-      inSlope: 6.3323975
-      outSlope: 6.3323975
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1.0826153
-      value: 10.014818
-      inSlope: 5.3232846
-      outSlope: 5.3232846
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  pitchIn: 0
-  inputWave: 0
   loudnessIn: 0
-  loudnessThreshold: 10
-  waveStartingRadius:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: -1
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: -1
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  waveRadiusBehavior:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: -0.0009940357
-      value: 9.803282
-      inSlope: -6.9196124
-      outSlope: -6.9196124
-      tangentMode: 34
-    - serializedVersion: 2
-      time: 0.9900596
-      value: 2.9455748
-      inSlope: -6.9196124
-      outSlope: -6.9196124
-      tangentMode: 34
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  waveLengthBehavior:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 10.019178
-      inSlope: -9.019178
-      outSlope: -9.019178
-      tangentMode: 34
-    - serializedVersion: 2
-      time: 1
-      value: 1
-      inSlope: -9.019178
-      outSlope: -9.019178
-      tangentMode: 34
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  waveSpeedBehavior:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 8.00023
-      inSlope: -7.9007006
-      outSlope: -7.9007006
-      tangentMode: 34
-    - serializedVersion: 2
-      time: 1
-      value: 0.099529505
-      inSlope: -7.9007006
-      outSlope: -7.9007006
-      tangentMode: 34
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  waveCouldownBehavior:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0.054876465
-      inSlope: 1.9011949
-      outSlope: 1.9011949
-      tangentMode: 34
-    - serializedVersion: 2
-      time: 1
-      value: 1.9560714
-      inSlope: 1.9011949
-      outSlope: 1.9011949
-      tangentMode: 34
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  waveNumberBehavior:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  waveWidthBehavior:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0.9617195
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 1.1510415
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!114 &114338380233056296
 MonoBehaviour:
   m_ObjectHideFlags: 1

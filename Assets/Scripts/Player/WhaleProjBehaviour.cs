@@ -9,9 +9,16 @@ public class WhaleProjBehaviour : MonoBehaviour {
     protected Rigidbody2D _rb2D;
     protected float _moveSpeed = 100f;
     protected Vector2 _direction = Vector2.right;
+    protected float _lifeTime;
+    protected float _programmedDeath;
 
     public void SetMoveSpeed(float newSpeed) {
         _moveSpeed = newSpeed;
+    }
+
+    public void SetLifeTime(float lifeTime) {
+        _lifeTime = lifeTime;
+        _programmedDeath = Time.realtimeSinceStartup + lifeTime;
     }
 
     void Start () {
@@ -26,6 +33,13 @@ public class WhaleProjBehaviour : MonoBehaviour {
             if (enemy == null)
                 return;
             enemy.OnDying();
+        }
+    }
+
+    void Update() {
+        var current = Time.realtimeSinceStartup;
+        if(current > _programmedDeath) {
+            GameObject.Destroy(gameObject);
         }
     }
 
