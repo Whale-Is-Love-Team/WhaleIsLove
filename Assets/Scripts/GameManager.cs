@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour {
     protected int _comboIndex;
     protected float _comboLostAt;
 
+    [SerializeField]
+    public ScoreList scoreList;
+
     public void Awake() {
         if (s_Instance == null)
         {
@@ -40,7 +43,7 @@ public class GameManager : MonoBehaviour {
         var currentTime = Time.realtimeSinceStartup;
         var floorTime = Mathf.FloorToInt(currentTime);
         if (floorTime != 0 && floorTime % 10 == 0) {
-            if(!_timeUpdatedThisTime) {
+            if(!_timeUpdatedThisTime && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("main")) {
                 Score += (int) (10 * Combo);
                 _timeUpdatedThisTime = true;
             }

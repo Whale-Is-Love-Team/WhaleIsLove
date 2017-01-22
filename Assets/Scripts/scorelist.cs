@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scorelist : ScriptableObject
+[CreateAssetMenu(fileName = "ScoreList", menuName = "Whales/ScoreList", order = 1)]
+public class ScoreList : ScriptableObject
 {
-
+    public List<KeyValuePair<string, int>> list = new List<KeyValuePair<string, int>>();
 }
