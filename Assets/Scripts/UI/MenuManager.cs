@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour {
 
+    public GameObject menu;
+    public GameObject credits;
+
 	public void Jouer_OnClick()
     {
         SceneManager.LoadScene("main");
@@ -17,11 +20,26 @@ public class MenuManager : MonoBehaviour {
 
     public void Options_OnClick()
     {
-
+        SceneManager.LoadScene("calibrage");
     }
 
     public void Credits_OnClick()
     {
+        menu.SetActive(false);
+        credits.SetActive(true);
+    }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("QUIT");
+            Application.Quit();
+        }
+        if (Input.anyKeyDown)
+        {
+            credits.SetActive(false);
+            menu.SetActive(true);
+        }
     }
 }
