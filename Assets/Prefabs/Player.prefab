@@ -25,8 +25,6 @@ GameObject:
   - component: {fileID: 61271961705006970}
   - component: {fileID: 95991095318166242}
   - component: {fileID: 50961833716265238}
-  - component: {fileID: 114278334329924596}
-  - component: {fileID: 114820860449624146}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -270,18 +268,6 @@ MonoBehaviour:
   pitchMin: 100
   pitchMax: 500
   loudnessIn: 0
---- !u!114 &114278334329924596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1061464288084870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1997211142, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ForceModuleActive: 0
 --- !u!114 &114338380233056296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -294,20 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 3
---- !u!114 &114820860449624146
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1061464288084870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 5
+  invulFrameCount: 24
 --- !u!114 &114936261684264324
 MonoBehaviour:
   m_ObjectHideFlags: 1
